@@ -30,10 +30,11 @@
 
 
 .hero-section{
-  background: url('./assets/shutterstock_348320018.png');
+
+  background: rgba(0, 0, 0, 0.5)url('./assets/shutterstock_348320018.png') ;
   height: 60vh;
   background-size: cover;
-  
+  background-blend-mode: darken;
   background-repeat: no-repeat;
 }
 
@@ -71,16 +72,109 @@
 }
 
 
-.card{
-  display: flex;
-  max-width: 500px;
-  height: 200px;
-  
+
+/*--------------------------------- Card Catagory-----------------------------*/
+
+
+.foods{
+  padding: 3rem 4rem;
+  color: #192F60;
 }
-.card-content{
-  padding: 1rem 1rem;
+.foods h1{
+  
+  letter-spacing: 5px;
+}
+.foods h3{
+  line-height: 60px;
+  color: #8C96AB;
 }
 
 .card-container{
   display: flex;
+  flex-wrap: wrap;
+}
+
+.card{
+  display: flex;
+  max-width: 600px;
+  height: 160px;
+  box-shadow: 1px 1px 10px rgb(181, 177, 177);
+  margin: 1rem 1rem;
+}
+.card .img{
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+}
+.card img{
+  height: 160px;
+}
+.card-content{
+  max-width: 210px;
+  padding: 1rem 1rem;
+}
+.card-content p{
+  color: #8C96AB;
+}
+
+
+
+
+
+/* ------------------------Model Login Page --------------------------*/
+
+.model-container{
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(34, 32, 32, 0.7);
+  
+  position: fixed;
+  top: 0;
+}
+
+.model{
+  background-color:white;
+ position: relative;
+ height: 50vh;
+ width: 30vw;
+ top: 50%;
+ left: 50%;
+  transform: translate(-50%,-50%);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem;
+  color: #192F60;
+}
+.model .header{
+  display: flex;
+  justify-content: space-between;
+}
+.header button{
+  background: none;
+  font-size: 1.3rem;
+  border: none;
+  font-weight: 700;
+  color: rgba(39, 38, 37,0.8);
+  cursor: pointer;
+}
+
+.model>button{
+  background: none;
+  padding: 0.7rem 1.2rem;
+  border: 2px solid #C7C7C7;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  color: #192F60;
+}
+.model .footer{
+  border-top: 2px solid #C7C7C7;
+  padding: 0.4rem 0.5rem;
+  text-align: center;
+  font-size: 0.7rem;
+}
+
+.model .footer span{
+  color: #CE0505;
 }

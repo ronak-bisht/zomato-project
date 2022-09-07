@@ -1,10 +1,27 @@
 import Button from './Button.js'
 import zomato from '../assets/Zomato-Logo.png'
-export default function hero(){
+import Model from '../models/login.js'
+import React, {useState} from 'react'
+export default function Hero(){
+
+    const [open,setOpen]=React.useState(false)
+    const [register,setRegister]=React.useState(false)
+    function openRegister(){
+        setRegister(true)
+    }
+    function openLogin(){
+        setOpen(true)
+       
+    }
+    function closeLogin(){
+        setOpen(false)
+        setRegister(false)
+    }
+    
     return(
        
        <div className='hero-section'>
-
+        
 
          <div className='buttons'>
             <Button 
@@ -12,6 +29,7 @@ export default function hero(){
             isBackground='0'
             size=''
             text='Login'
+            openLogin={openLogin}
               />
 
               <Button 
@@ -19,6 +37,7 @@ export default function hero(){
                isBackground='0'
                size='lg'
                text='Create an account'
+               openLogin={openRegister}
               />
          </div>
         
@@ -37,7 +56,15 @@ export default function hero(){
            </div>
         </div>
 
+        {open && <Model closeLogin={closeLogin}
+           register="Login"
+           login="Sign UP"
+        />}
 
+        {register && <Model closeLogin={closeLogin}
+           register="Sign UP"
+           login="Login"
+        />}
        
 
        </div>

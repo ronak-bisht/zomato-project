@@ -12,7 +12,7 @@ function App() {
       
        <Hero />
        <Cards />
-       <div></div>
+       
     </div>
   );
 }
