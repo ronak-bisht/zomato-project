@@ -1,0 +1,37 @@
+{
+  "restaurants":[
+    {
+        "id":1,
+        "img":"https://img2.mashed.com/img/gallery/the-ultimate-list-of-your-favorite-fast-food-copycat-recipes/l-intro-1603229426.jpg",
+        "name":"The Big Chill Cakry",
+        "city":"Delhi",
+        "phone":"+91 114004566",
+        "address":"shop abcd",
+        "cuisines":"North Indian",
+        "cost":"700"
+        
+    },
+    {
+        "id":2,
+        "img":"https://img2.mashed.com/img/gallery/the-ultimate-list-of-your-favorite-fast-food-copycat-recipes/l-intro-1603229426.jpg",
+        "name":"Karims Restaurant",
+        "city":"Delhi",
+        "phone":"+91 114004566",
+        "address":"shop abcd",
+        "cuisines":"Bakery",
+        "cost":"700"
+        
+    },
+    {
+        "id":3,
+        "img":"https://img2.mashed.com/img/gallery/the-ultimate-list-of-your-favorite-fast-food-copycat-recipes/l-intro-1603229426.jpg",
+        "name":"KFC",
+        "city":"Delhi",
+        "phone":"+91 114004566",
+        "address":"shop abcd",
+        "cuisines":"Bakery",
+        "cost":"700"
+        
+    }
+]
+}
