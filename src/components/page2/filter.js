@@ -1,18 +1,22 @@
 import Nav from './navbar.js'
 import { useState,useEffect } from 'react'
 import {Link} from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import Paginate from './paginationBtn.js'
 
 
 
 export default function Filter(){
+    const {meal}=useParams()
+    console.log(meal)
   const [restaurant,setRestaurant]=useState([])
   const [inputName,setInputName]=useState('')
   const [itemPerPage,setItemPerPage]=useState(2)
   const [pageNum,setPageNum]=useState(1)
+  
   const [filter,setFilter]=useState({
-    cuisine:'North',
+    cuisine:'North Indian',
     lowCost:0,
     highCost:10000,
     ascending:'true'
@@ -20,12 +24,12 @@ export default function Filter(){
 
  useEffect(()=>{
     const getData=async ()=>{
-        const data=await axios.get('http://localhost:5000/restaurants')
+        const data=await axios.get(`http://localhost:5000/restaurants?meal=${meal}`)
        
         setRestaurant(data.data)
     }
     getData()
- },[])
+ },[filter])
 
 
 const handleSearch=()=>{
@@ -33,11 +37,39 @@ const handleSearch=()=>{
 
         const data=await axios.get(`http://localhost:5000/restaurants?q=${inputName}
         `)
-       console.log(data.data)
+       
         setRestaurant(data.data)
     }
     getData()
 }
+
+const handleFilter=(event)=>{
+    const {name,value,type,lowcost,highcost}=event.target
+    
+    if(name==='price'){
+        const arr=value.split(' ')
+        
+        setFilter((pre)=>{
+            return {
+                ...pre,
+                'lowCost':Number(arr[0]),
+                'highCost':Number(arr[1])
+            }
+        })
+    }
+    
+    else{
+        setFilter((pre)=>{
+            return {
+                ...pre,
+               [name]:value
+            }
+        })
+    }
+   
+    
+}
+console.log(filter)
 
 const last=pageNum*itemPerPage
 const first=last-itemPerPage
@@ -54,41 +86,41 @@ const first=last-itemPerPage
             <div className='filter'>
                 <h3>Filters</h3>
                 
-            <input type='text' onChange={(e)=>{setInputName(e.target.value)}}></input>
+            <input type='text' placeholder='Enter restaurant'  onChange={(e)=>{setInputName(e.target.value)}}></input>
             <button onClick={handleSearch}>Search</button>
                 <div className='cuisine'>
                     <h3>Cuisine</h3>
-                    <input type="radio" name="cuisine"/>
+                    <input type="radio" name="cuisine" value='North Indian' onChange={handleFilter}/>
                     <label>North Indian</label><br/>
-                    <input type="radio" name="cuisine"/>
+                    <input type="radio" name="cuisine" value='South Indian' onChange={handleFilter}/>
                     <label>South Indian</label><br/>
-                    <input type="radio" name="cuisine"/>
+                    <input type="radio" name="cuisine" value='Chinese' onChange={handleFilter}/>
                     <label>Chinese</label><br/>
-                    <input type="radio" name="cuisine"/>
+                    <input type="radio" name="cuisine" value='Fast Food' onChange={handleFilter}/>
                     <label>Fast Food</label><br/>
-                    <input type="radio" name="cuisine"/>
+                    <input type="radio" name="cuisine" value='Street Food' onChange={handleFilter}/>
                     <label>Street Food</label><br/>
                 </div>
 
                 <div className='cost'>
                     <h3>Cost For Two</h3>
-                    <input type="radio" name="price"/>
+                    <input type="radio" name="price" onChange={handleFilter} value='0 500'/>
                     <label>Less than 500</label><br/>
-                    <input type="radio" name="price"/>
+                    <input type="radio" name="price" onChange={handleFilter} value='500 1000'/>
                     <label>500 to 1000</label><br/>
-                    <input type="radio" name="price"/>
+                    <input type="radio" name="price" onChange={handleFilter} value='1000 1500'/>
                     <label>1000 to 1500</label><br/>
-                    <input type="radio" name="price"/>
+                    <input type="radio" name="price" onChange={handleFilter} value='1500 2000'/>
                     <label>1500 to 2000</label><br/>
-                    <input type="radio" name="price"/>
+                    <input type="radio" name="price"  onChange={handleFilter} value='2000 10000'/>
                     <label>2000+</label><br/>
                 </div>
                
                <div className='sort'>
                 <h3>Sort</h3>
-                <input type="radio" name="sort"/>
+                <input type="radio" name="ascending" value='true' onChange={handleFilter}/>
                     <label>Price low to high</label><br/>
-                    <input type="radio" name="sort"/>
+                    <input type="radio" name="ascending" value='false' onChange={handleFilter}/>
                     <label>Price high to low</label><br/>
                </div>
 

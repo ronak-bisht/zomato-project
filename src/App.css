@@ -135,7 +135,7 @@
 .model{
   background-color:white;
  position: relative;
- height: 50vh;
+ height: 55vh;
  width: 30vw;
  top: 50%;
  left: 50%;
@@ -160,13 +160,18 @@
   cursor: pointer;
 }
 
-.model>button{
-  background: none;
-  padding: 0.7rem 1.2rem;
-  border: 2px solid #C7C7C7;
-  border-radius: 10px;
+
+
+.model label{
   font-size: 1.2rem;
-  color: #192F60;
+  
+}
+.model input{
+  width: 100%;
+  height: 2rem;
+  font-size: 1.2rem;
+  margin-top: 0.9rem;
+  padding: 0.3rem;
 }
 .model .footer{
   border-top: 2px solid #C7C7C7;

@@ -4,28 +4,33 @@ const data=[
     {
         img:require('../assets/shutterstock_348320018.png'),
         title:'Breakfast',
-        para:'Start your day with exclusive breakfast options'
+        para:'Start your day with exclusive breakfast options',
+        
     },
     {
         img:require('../assets/shutterstock_476864884.png'),
         title:'Lunch',
-        para:'Start your day with exclusive breakfast options'
+        para:'Start your day with exclusive breakfast options',
+        
     },
     {
 
         img:require('../assets/shutterstock_1130181932.png'),
-        title:'snacks',
-        para:'Start your day with exclusive breakfast options'
+        title:'Snacks',
+        para:'Start your day with exclusive breakfast options',
+    
     },
     {
         img:require('../assets/shutterstock_351721442.png'),
         title:'Dinner',
-        para:'Start your day with exclusive breakfast options'
+        para:'Start your day with exclusive breakfast options',
+        
     },
     {
         img:require('../assets/shutterstock_1304064250.png'),
         title:'Nightlife',
-        para:'Start your day with exclusive breakfast options'
+        para:'Start your day with exclusive breakfast options',
+        
     },
     {
         img:require('../assets/shutterstock_305270834.png'),

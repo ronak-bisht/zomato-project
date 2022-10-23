@@ -8,7 +8,8 @@
         "phone":"+91 114004566",
         "address":"shop abcd",
         "cuisines":"North Indian",
-        "cost":"700"
+        "cost":"700",
+        "meal":"Breakfast"
         
     },
     {
@@ -19,7 +20,8 @@
         "phone":"+91 114004566",
         "address":"shop abcd",
         "cuisines":"Bakery",
-        "cost":"700"
+        "cost":"700",
+        "meal":"Breakfast"
         
     },
     {
@@ -30,7 +32,8 @@
         "phone":"+91 114004566",
         "address":"shop abcd",
         "cuisines":"Bakery",
-        "cost":"700"
+        "cost":"700",
+        "meal":"Lunch"
         
     }
 ]

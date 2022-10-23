@@ -5,16 +5,18 @@
  import React,{useState,useEffect} from 'react'
  import Overview from './overview.js'
  import Contact from './constact.js'
+ import prom from '../../data.js'
  import data from '../data.js'
  import { useParams } from 'react-router-dom'
 export default function Detail(){
+   
     
-     
+    
     const {id}=useParams()
     const obj=data.find((res)=>{
         return res.id==id
     })
-    
+    console.log('after find')
     const [overview,setOverview]=React.useState(true)
     const [contact,setContact]=React.useState(false)
     const [showOrder,setShowOrder]=React.useState(false)

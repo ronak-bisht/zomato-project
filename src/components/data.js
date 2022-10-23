@@ -7,7 +7,7 @@ export default [
         "city":"Delhi",
         "phone":"+91 114004566",
         "address":"shop abcd",
-        "cuisines":"Bakery",
+        "cuisines":"North Indian",
         "cost":"700",
         "food":[
             {"name":"Gobi Manchurian","price":89,"desc":"Deep-fried"},

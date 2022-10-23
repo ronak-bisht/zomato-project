@@ -62,6 +62,7 @@ export default function Hero(){
         />}
 
         {register && <Model closeLogin={closeLogin}
+            name='name'
            register="Sign UP"
            login="Login"
         />}
