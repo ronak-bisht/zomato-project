@@ -3,6 +3,7 @@ const express=require('express')
 const Router=express.Router()
 const User=require('./userSchema.js')
 const jwt=require('jsonwebtoken')
+const authenticate=require('./middleware/authenticate.js')
 
  Router.post('/register',(req,res)=>{
     const {name,email,password}=req.body
@@ -41,7 +42,8 @@ Router.post('/signin',async (req,res)=>{
             if(userLogin.password===password){ 
                 const token=await userLogin.generateAuthToken()
                 res.cookie('jwtoken',token,{
-                    httpOnly:true
+                    httpOnly:true,
+                    secure:false
                 })
                 res.json({message:'user signed in succesfull'})
             }
@@ -58,4 +60,8 @@ Router.post('/signin',async (req,res)=>{
     }
 })
 
+Router.get('/payment',authenticate,(req,res)=>{
+ console.log('hello about')
+ res.send(req.rootUser)
+})
 module.exports=Router

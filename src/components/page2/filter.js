@@ -9,7 +9,7 @@ import Paginate from './paginationBtn.js'
 
 export default function Filter(){
     const {meal}=useParams()
-    console.log(meal)
+    
   const [restaurant,setRestaurant]=useState([])
   const [inputName,setInputName]=useState('')
   const [itemPerPage,setItemPerPage]=useState(2)
@@ -24,7 +24,7 @@ export default function Filter(){
 
  useEffect(()=>{
     const getData=async ()=>{
-        const data=await axios.get(`http://localhost:5000/restaurants?meal=${meal}`)
+        const data=await axios.get(`http://localhost:5000/restaurants`)
        
         setRestaurant(data.data)
     }
@@ -69,7 +69,7 @@ const handleFilter=(event)=>{
    
     
 }
-console.log(filter)
+
 
 const last=pageNum*itemPerPage
 const first=last-itemPerPage

@@ -5,7 +5,7 @@
  import React,{useState,useEffect} from 'react'
  import Overview from './overview.js'
  import Contact from './constact.js'
- import prom from '../../data.js'
+ import Payment from '../../models/payment.js'
  import data from '../data.js'
  import { useParams } from 'react-router-dom'
 export default function Detail(){
@@ -16,11 +16,12 @@ export default function Detail(){
     const obj=data.find((res)=>{
         return res.id==id
     })
-    console.log('after find')
+    
     const [overview,setOverview]=React.useState(true)
     const [contact,setContact]=React.useState(false)
     const [showOrder,setShowOrder]=React.useState(false)
-   
+    const [showUser,setShowUser]=React.useState(false)
+    const [showPayment,setshowPayment]=React.useState(false)
    function handleChange(e){
     if(e.target.id==='overview'){
         setOverview(true)
@@ -32,6 +33,37 @@ export default function Detail(){
     }
    }
    
+
+   const handleModel=async ()=>{
+    try{
+        const res=await fetch('/payment',{
+            method:'GET',
+            headers:{
+                Accept:"application/json",
+                "Content-Type":"application/json"
+            },
+            credentials:"include"
+        })
+
+        const data= await res.json()
+        if(!res.status===200){
+            const err=new Error(res.error)
+            throw err
+        }
+        else{
+            setShowOrder(!showOrder)
+            setShowUser(!showUser)
+        }
+
+    }catch(err){
+        console.log("user not loged in")
+    }
+   }
+
+ function handlePayment(){
+    setshowPayment(!showPayment)
+    setShowUser(!showUser)
+ }
     
     return(
         <div>
@@ -55,8 +87,9 @@ export default function Detail(){
                {overview && <Overview cuisine={obj.cuisines} cost={obj.cost}/>}
                {contact && <Contact phone={obj.phone} city={obj.city} address={obj.address} name={obj.name}/>}
                
-               {showOrder && <Order foods={obj.food} name={obj.name} close={()=>setShowOrder(!showOrder)}/>}
-               <Info/>
+               {showOrder && <Order foods={obj.food} name={obj.name} close={()=>setShowOrder(!showOrder)} pay={handleModel}/>}
+               {showUser && <Info close={()=>setShowUser(!showUser)} name={obj.name} payment={handlePayment}/>}
+               {showPayment && <Payment/>}
             </div> 
         </div>
     )

@@ -1,6 +1,6 @@
 import React,{useState} from "react"
-export default function Order({foods,name,close}){
-
+export default function Order({foods,name,close,pay}){
+ 
    const [orderNum,setOrderNum]=useState({
       "Gobi Manchurian":0,
       "Panner":0,
@@ -81,7 +81,7 @@ export default function Order({foods,name,close}){
            
             <h2>Subtotal</h2>
             <h2>${total}</h2>
-            <button>Pay Now</button>
+            <button onClick={pay}>Pay Now</button>
         </div>
         </div>
     </div>

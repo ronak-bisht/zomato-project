@@ -4,6 +4,7 @@ import Hero from './components/Hero.js'
 import Filter from './components/page2/filter.js'
 import Cards from './components/cardContainer.js'
 import Detail from './components/page3/detail.js'
+
 function App() {
  
   return (
@@ -16,6 +17,7 @@ function App() {
           </Route>
           <Route path='/filter/:meal' element={<Filter/>} />
           <Route path='/detail/:id' element={<Detail key='unique'/>} />
+          
         </Routes>
       </Router>
      
