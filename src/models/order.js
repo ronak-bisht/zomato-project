@@ -46,8 +46,8 @@ export default function Order({foods,name,close,pay}){
     <div className="food-list-container">
       <div className="food-list">
          <div style={{display:'flex',justifyContent:'space-between'}}>
-         <div style={{fontSize:'1.8rem',marginBottom:'2rem'}}>{name}</div>
-         <div style={{cursor:'pointer',fontSize:'2rem'}} onClick={close}>x</div>
+         <div className="head" style={{fontSize:'1.3rem',marginBottom:'1.7rem'}}>{name}</div>
+         <div style={{cursor:'pointer',fontSize:'1.5rem'}} onClick={close}>x</div>
          </div>
          <div className="food-item">
         {

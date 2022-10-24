@@ -81,7 +81,7 @@ const first=last-itemPerPage
     return(
         <div>
          <Nav />
-         <h1>Breakfast Places in Mumbai</h1>
+         <h1 id='head'>Breakfast Places in Mumbai</h1>
          <div className='filter-container'>
             <div className='filter'>
                 <h3>Filters</h3>
@@ -130,15 +130,15 @@ const first=last-itemPerPage
                     paginateRestaurants.map((obj)=>{
                         return(
                             <div className='restaurant'>
-                            <div style={{display:'flex', margin:'1rem 0'}}>
+                            <div className='inner' style={{display:'flex'}}>
                                 <img src={obj.img} width='300px' style={{margin:'0 1rem'}}></img>
-                                <div >
+                                <div className='inner-content'>
                                     <Link to={`/detail/${obj.id}`}><h1>{obj.name}</h1></Link>
                                     <h3>FORT</h3>
                                     <h3>{obj.address + obj.city}</h3>
                                 </div>
                             </div>
-                            <div style={{borderTop:'1px solid #00000029', padding:'1rem 2rem', lineHeight:'30px'}}>
+                            <div className='bottom' style={{borderTop:'1px solid #00000029',  lineHeight:'30px'}}>
                                 <span>CUISINES:</span>
                                 <span>Bakery</span><br/>
                                 <span>COST FOR TWO:</span>

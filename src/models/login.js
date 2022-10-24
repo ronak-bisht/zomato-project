@@ -1,5 +1,6 @@
 
 import React from "react"
+
 export default function Login(props){
 
     const [user,setUser]=React.useState({
@@ -7,6 +8,7 @@ export default function Login(props){
         email:'',
         password:''
     })
+    const [error,setError]=React.useState(false)
     function handleChange(e){
         const {name,value}=e.target
         setUser((pre)=>{
@@ -36,8 +38,7 @@ export default function Login(props){
 
         const data=await res.json()
         if(res.status===422 || !data){
-            window.alert('invalid credentails')
-            console.log('invalid')
+           setError(true)
         }
         else{
             setUser({
@@ -66,7 +67,7 @@ export default function Login(props){
     const data=res.json()
     
     if(res.status===400||!data){
-        window.alert('invalid credentails')
+        setError(true)
     }
     else{
         window.alert('login seccesfuly')
@@ -99,13 +100,15 @@ export default function Login(props){
                 <input typeof="password" name="password" onChange={handleChange} value={user.password}></input>
                 </div>
                 <div>
-                    {props.name?<button  onClick={register}>Register</button>:<button onClick={login}>Login</button>}
+                    {props.name?<button className="login" onClick={register}>Register</button>:<button className="login" onClick={login}>Login</button>}
                 </div>
                 {/* <button className='gmail'>Continue with Gmail</button>
                 <button className='facebook'>Continue with Facebook</button> */}
                 <div className='footer' >
                     <h2>Don't have account? <span>{props.login}</span></h2>
                 </div>
+
+                {error && <div style={{color:'red'}}>Invalid Credentials</div>}
             </div>
         </div>
     )

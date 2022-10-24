@@ -8,7 +8,8 @@ const authenticate=require('./middleware/authenticate.js')
  Router.post('/register',(req,res)=>{
     const {name,email,password}=req.body
     if(!name || !email || !password){
-        res.status(422).send({message:'please fill all the fields'})
+        
+        return res.status(422).send({message:'please fill all the fields'})
     }
     User.findOne({email:email}).then((userExist)=>{
         if(userExist){
@@ -63,5 +64,10 @@ Router.post('/signin',async (req,res)=>{
 Router.get('/payment',authenticate,(req,res)=>{
  console.log('hello about')
  res.send(req.rootUser)
+})
+
+Router.get('/logout',(req,res)=>{
+    res.clearCookie('jwttoken',{path:'/'})
+    res.status(200).send('user lougout')
 })
 module.exports=Router

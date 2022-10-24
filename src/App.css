@@ -32,7 +32,7 @@
 .hero-section{
 
   background: rgba(0, 0, 0, 0.5)url('./assets/shutterstock_348320018.png') ;
-  height: 60vh;
+  min-height: 60vh;
   background-size: cover;
   background-blend-mode: darken;
   background-repeat: no-repeat;
@@ -116,7 +116,9 @@
 .card-content p{
   color: #8C96AB;
 }
-
+.card-content a{
+  text-decoration: none;
+}
 
 
 
@@ -160,7 +162,14 @@
   cursor: pointer;
 }
 
-
+.model .login{
+  background-color: #e41f1f;
+  border: none;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+}
 
 .model label{
   font-size: 1.2rem;
@@ -200,6 +209,7 @@
 }
 
 .filter-container .filter{
+  
   display: flex;
   flex-direction: column;
   grid-column: 2/span 3;
@@ -216,6 +226,7 @@
 }
 
  .filter-food .restaurant{
+  
   padding: 1.5rem 1.5rem;
   margin: 2rem 0;
   box-shadow: 2px 2px 10px rgba(150, 137, 137, 0.5);
@@ -233,6 +244,11 @@
   padding: 0.6rem 1.2rem;
 
  }
+ .restaurant .bottom{
+  padding: 1rem 2rem;
+  
+  
+}
 
  /*------------------- detail -----------------------------*/
 
@@ -275,7 +291,7 @@
   margin: 0 1rem;
  }
 
- #orderbtn{
+ .btns .orderbtn{
   background-color: #CE0505;
   margin-left: 50vw;
   padding: 0.3rem 0.6rem;
@@ -375,3 +391,327 @@ line-height: 40px;
   margin: 2rem 0;
   letter-spacing: 3px;
  }
+
+ /*--------------------- payment-container -----------------------*/
+ .payment-container{
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(34, 32, 32, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ }
+
+ .payment{
+  background-color: white;
+  width: 50vw;
+  height: 75vh;
+padding: 3rem 3rem;
+
+border-radius: 10px;
+line-height: 40px;
+
+ }
+ .payment h1{
+  margin-bottom: 3rem;
+ }
+
+ .payment input{
+  height: 3rem;
+  width: 100%;
+
+ }
+ .payment button{
+  background-color: #e41f1f;
+  width:7rem;
+  height: 3rem;
+  color: white;
+margin: 1rem 0;
+border-radius: 10px;
+ }
+
+
+
+ 
+@media only screen and (max-width: 630px) {
+
+  
+  .btn{
+    background: none;
+    padding:0.5rem 1rem;
+    
+    font-size: 14px; 
+  }
+  .buttons{
+    justify-content: space-between;
+    
+  }
+  .hero-content h1{
+    font-size: 1.4rem;
+    text-align: center;
+    
+  }
+  
+  .hero-input input:nth-child(1){
+    padding: 1rem 1rem;
+    margin: 0.8rem 4rem;
+    
+    border: none;
+  }
+  .hero-input input:nth-child(2){
+    padding: 1rem 2rem;
+    margin: 3rem 1rem;
+    width: 80%;
+    
+  }
+  .hero-input{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+ .hero-content img{
+  width: 150px;
+ }
+
+
+
+  .foods{
+    padding: 1rem 1rem;
+  }
+  .foods h1{
+    font-size: 1.7rem;
+    text-align: center;
+  }
+  .foods h3{
+    font-size: 1rem;
+    text-align: center;
+    
+  }
+  
+  .card-container{
+    display: flex;
+    flex-wrap: wrap;
+    
+  }
+  
+  .card{
+    
+    max-width: 300px;
+    height: 100px;
+    margin: 0.8rem 0.8rem;
+  }
+  .card .img{
+    width: 300px;
+    height: 200px;
+   
+  }
+  .card img{
+    height: 100px;
+  }
+  .card-content{
+    font-size: 0.7rem;
+    padding: 0.5rem 1rem;
+    
+  }
+  
+  
+  .card-content p{
+  
+    font-size: 0.8rem;
+  }
+
+  .model{
+    width: 80vw;
+  }
+
+
+  .model .header{
+    font-size: 0.6rem;
+  }
+  .model label{
+    font-size: 1rem;
+  }
+  .model .footer{
+    font-size: 0.5rem;
+  }
+
+  .navbar{
+    display: flex;
+    width: 100vw;
+    height: 4.8rem;
+    padding: 0.2rem 1.3rem;
+    justify-content: space-between;
+    background-color: #CE0505;
+  }
+  .navbar .buttons{
+    
+    
+    padding: 1rem 1rem;
+  }
+  .navbar img{
+    width: 70px; 
+    
+  }
+.btn{
+  font-size: 10px;
+  width: 100px;
+}
+
+  /* filter page */
+  #head{
+    font-size: 23px;
+    padding: 5px 5px;
+  }
+
+  .filter-container .filter{
+    display: none;
+  }
+  .filter-container .filter-food{
+    grid-column: 2/span 15;
+    
+  }
+  .filter-container .filter-food img{
+    height: 120px;
+    width: 250px;
+    
+  }
+  .filter-food .restaurant{
+  
+    padding: 0.5rem 0.3rem;
+    margin: 1rem 0;
+    box-shadow: 2px 2px 10px rgba(150, 137, 137, 0.5);
+    color: #192F60;
+   }
+  .restaurant .inner{
+    flex-direction: column;
+    /* align-items: center; */
+    
+    
+  }
+  .restaurant .inner h1{
+    font-size: 22px;
+  }
+  .restaurant .inner a{
+    text-decoration: none;
+  }
+  .restaurant .inner h3{
+    font-size: 17px;
+  }
+  .inner-content{
+    padding: 0.5rem 1rem;
+    
+  }
+  .restaurant .bottom{
+    padding: 0.5rem 1rem;
+    font-size: 13px;
+    
+  }
+
+
+  /* detail */
+
+  .detail {
+    padding: 0;
+  
+   
+ }
+ .detail img{
+  width: 100vw;
+ }
+ .detail button{
+  
+  font-size: 0.7rem;
+ }
+ .detail h1{
+  font-size: 1.2rem;
+ }
+ .detail .btns{
+ margin-top: 1rem;
+
+ }
+ .detail .overview h1{
+  margin: 0.7rem 1rem;
+  font-size: 1rem;
+  
+ }
+
+ .overview .cuisine{
+  margin: 0.6rem 1rem;
+  
+ 
+ }
+ .detail h2{
+  font-size: 15px;
+ }
+ .detail h3{
+  font-size: 15px;
+ }
+ 
+
+ .btns .orderbtn{
+  margin-left: 10vw;
+  padding: 1px 0.4rem;
+ }
+
+
+ 
+ /* order detail */
+
+ .food-list{
+ 
+  width: 80vw;
+  padding: 0.8rem 1rem;
+ }
+ 
+ .food-list .food-item{
+  height: 52vh;
+ }
+ 
+ .food-item .food{
+  
+  line-height: 20px;
+ }
+ .food-item .food-container{
+  font-size: 13px;
+  padding:  0.6rem 0;
+ 
+ }
+ 
+ .food-list .subtotal button{
+  padding: 0.1rem 1rem;
+ }
+
+
+ /* user info */
+
+ .info-container{
+  width: 80vw;
+ }
+ .info-container h1{
+  margin-bottom: 1.8rem;
+ }
+
+ .info-container input{
+  margin-bottom: 0.2rem;
+  width: 100%;
+  height: 40px;
+ }
+ .info-container label{
+  font-weight: 500;
+ }
+ .info-container button{
+ 
+  padding: 0.1rem 0.8rem;
+ 
+  margin: 1rem 0;
+  
+ }
+.payment{
+  width: 80vw;
+}
+
+
+}

@@ -39,6 +39,13 @@ export default function Hero(){
                text='Create an account'
                openLogin={openRegister}
               />
+
+            <Button
+              isOutline='1'
+              isBackground='0'
+              size=''
+              text='Logout'
+              />
          </div>
         
 

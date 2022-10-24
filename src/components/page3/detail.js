@@ -73,13 +73,13 @@ export default function Detail(){
                <div>
                  <img src={obj.img} width='500px'></img>
                </div>
-
-               <h1 style={{margin:'1rem 1rem',letterSpacing:'2px'}}>{obj.name}</h1>
+                
+               <h1 style={{margin:'0rem 1rem',letterSpacing:'2px'}}>{obj.name}</h1>
                <div className='btns'>
                <button onClick={handleChange} id='overview' style={{borderBottom: overview?'red 2px solid':'none'}}>Overview</button>
                 <button onClick={handleChange} id='contact' style={{borderBottom: contact?'red 2px solid':'none'}}>Contact</button>
                
-                <button id='orderbtn' onClick={()=>{setShowOrder(!showOrder)}}>Place Order Online</button>
+                <button className='orderbtn' onClick={()=>{setShowOrder(!showOrder)}}>Place Order Online</button>
                 
                 
                </div>
@@ -89,7 +89,7 @@ export default function Detail(){
                
                {showOrder && <Order foods={obj.food} name={obj.name} close={()=>setShowOrder(!showOrder)} pay={handleModel}/>}
                {showUser && <Info close={()=>setShowUser(!showUser)} name={obj.name} payment={handlePayment}/>}
-               {showPayment && <Payment/>}
+               {showPayment && <Payment close={()=>setshowPayment(!showPayment)}/>}
             </div> 
         </div>
     )
