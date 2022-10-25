@@ -5,12 +5,17 @@ import Filter from './components/page2/filter.js'
 import Cards from './components/cardContainer.js'
 import Detail from './components/page3/detail.js'
 import Logout from './components/logout.js'
+import { useReducer,createContext } from 'react';
+import {initialState, reducer } from './reducer/useReducer.js'
 
+export const UserContext = createContext()
 function App() {
- 
+ const [state,dispatch]=useReducer(reducer,initialState)
+
   return (
     
     <div>
+      <UserContext.Provider value={{state, dispatch}}>
       <Router>
         <Routes>
           <Route path="/" element={<div><Hero /><Cards /></div>}>
@@ -21,7 +26,7 @@ function App() {
           <Route path='/logout' element={<Logout />}/>
         </Routes>
       </Router>
-     
+      </UserContext.Provider>
        
     </div>
   );

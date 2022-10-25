@@ -11,14 +11,17 @@ const authenticate=async (req,res,next)=>{
     if(!rootUser){
         throw new Error('user Not found')
     }
-    req.token=token
-    req.rootUser=rootUser
-    req.userID=rootUser._id
-    next()
+    else{
+      req.token=token
+      req.rootUser=rootUser
+      req.userID=rootUser._id
+      next()
+    }
+   
  }
  catch(err){
     res.status(401).send('unautherised')
-    console.log(err)
+   
  }
 }
 

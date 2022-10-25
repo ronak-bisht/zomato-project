@@ -2,7 +2,8 @@
  import axios from 'axios'
  import Order from '../../models/order.js'
  import Info from '../../models/userInfo.js'
- import React,{useState,useEffect} from 'react'
+ import React,{useState,useEffect,useContext} from 'react'
+ import { UserContext } from '../../App.js'
  import Overview from './overview.js'
  import Contact from './constact.js'
  import Payment from '../../models/payment.js'
@@ -10,7 +11,7 @@
  import { useParams } from 'react-router-dom'
 export default function Detail(){
    
-    
+    const {state,dispatch}=useContext(UserContext)
     
     const {id}=useParams()
     const obj=data.find((res)=>{
@@ -22,6 +23,7 @@ export default function Detail(){
     const [showOrder,setShowOrder]=React.useState(false)
     const [showUser,setShowUser]=React.useState(false)
     const [showPayment,setshowPayment]=React.useState(false)
+    const [auth,setAuth]=React.useState(false)
    function handleChange(e){
     if(e.target.id==='overview'){
         setOverview(true)
@@ -33,6 +35,39 @@ export default function Detail(){
     }
    }
    
+
+
+   useEffect(()=>{
+    const auth=async ()=>{
+        try{
+            const res=await fetch('/payment',{
+                method:'GET',
+                headers:{
+                    Accept:"application/json",
+                    "Content-Type":"application/json"
+                },
+                credentials:"include"
+            })
+    
+            const data= await res.json()
+            if(!res.status===200){
+                dispatch({type:"USER",payload:false})
+                const err=new Error(res.error)
+                throw err
+            }
+            else{
+                dispatch({type:"USER",payload:true})
+               
+            }
+    
+        }catch(err){
+            console.log("user not loged in")
+            
+        }
+       }
+       auth()
+ },[])
+
 
    const handleModel=async ()=>{
     try{
@@ -47,22 +82,29 @@ export default function Detail(){
 
         const data= await res.json()
         if(!res.status===200){
+           
             const err=new Error(res.error)
             throw err
         }
         else{
+           
             setShowOrder(!showOrder)
             setShowUser(!showUser)
         }
 
     }catch(err){
         console.log("user not loged in")
+        setAuth(true)
     }
    }
 
  function handlePayment(){
     setshowPayment(!showPayment)
     setShowUser(!showUser)
+ }
+ function extra(){
+    setShowOrder(!showOrder)
+    setAuth(false)
  }
     
     return(
@@ -87,7 +129,7 @@ export default function Detail(){
                {overview && <Overview cuisine={obj.cuisines} cost={obj.cost}/>}
                {contact && <Contact phone={obj.phone} city={obj.city} address={obj.address} name={obj.name}/>}
                
-               {showOrder && <Order foods={obj.food} name={obj.name} close={()=>setShowOrder(!showOrder)} pay={handleModel}/>}
+               {showOrder && <Order foods={obj.food} name={obj.name} close={extra} pay={handleModel} auth={auth}/>}
                {showUser && <Info close={()=>setShowUser(!showUser)} name={obj.name} payment={handlePayment}/>}
                {showPayment && <Payment close={()=>setshowPayment(!showPayment)}/>}
             </div> 

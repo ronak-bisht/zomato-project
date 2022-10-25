@@ -1,13 +1,14 @@
 import Nav from './navbar.js'
-import { useState,useEffect } from 'react'
+import { useState,useEffect,useContext } from 'react'
 import {Link} from 'react-router-dom'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import Paginate from './paginationBtn.js'
-
+import { UserContext } from '../../App.js'
 
 
 export default function Filter(){
+    const {state,dispatch}=useContext(UserContext)
     const {meal}=useParams()
     
   const [restaurant,setRestaurant]=useState([])
@@ -22,15 +23,50 @@ export default function Filter(){
     ascending:'true'
   })
 
+
+
  useEffect(()=>{
     const getData=async ()=>{
-        const data=await axios.get(`http://localhost:5000/restaurants`)
-       
-        setRestaurant(data.data)
+        // const data=await axios.get(`http://localhost:5000/restaurants`)
+        const data=await axios.get(`/restaurants`)
+        
+        setRestaurant(data.data.filter((d)=>{
+            return d.meal===meal
+        }))
     }
     getData()
  },[filter])
 
+ useEffect(()=>{
+    const auth=async ()=>{
+        try{
+            const res=await fetch('/payment',{
+                method:'GET',
+                headers:{
+                    Accept:"application/json",
+                    "Content-Type":"application/json"
+                },
+                credentials:"include"
+            })
+    
+            const data= await res.json()
+            if(!res.status===200){
+                dispatch({type:"USER",payload:false})
+                const err=new Error(res.error)
+                throw err
+            }
+            else{
+                dispatch({type:"USER",payload:true})
+               
+            }
+    
+        }catch(err){
+            console.log("user not loged in")
+            
+        }
+       }
+       auth()
+ },[])
 
 const handleSearch=()=>{
     const getData=async ()=>{
@@ -81,7 +117,7 @@ const first=last-itemPerPage
     return(
         <div>
          <Nav />
-         <h1 id='head'>Breakfast Places in Mumbai</h1>
+         
          <div className='filter-container'>
             <div className='filter'>
                 <h3>Filters</h3>
@@ -140,9 +176,9 @@ const first=last-itemPerPage
                             </div>
                             <div className='bottom' style={{borderTop:'1px solid #00000029',  lineHeight:'30px'}}>
                                 <span>CUISINES:</span>
-                                <span>Bakery</span><br/>
+                                <span> {obj.cuisines}</span><br/>
                                 <span>COST FOR TWO:</span>
-                                <span> ${obj.cost}</span>
+                                <span> ₹{obj.cost}</span>
                             </div>
                         </div>
                         )

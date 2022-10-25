@@ -1,5 +1,5 @@
 import React,{useState} from "react"
-export default function Order({foods,name,close,pay}){
+export default function Order({foods,name,close,pay,auth}){
  
    const [orderNum,setOrderNum]=useState({
       "Gobi Manchurian":0,
@@ -41,7 +41,7 @@ export default function Order({foods,name,close,pay}){
       })
    }
 
-  
+
  return(
     <div className="food-list-container">
       <div className="food-list">
@@ -70,6 +70,7 @@ export default function Order({foods,name,close,pay}){
                      <button onClick={()=>{increament(item.name,item.price)}}>+</button>
                   </div>
                </div>
+               
                </div>
             )
          })
@@ -80,10 +81,12 @@ export default function Order({foods,name,close,pay}){
         <div className="subtotal">
            
             <h2>Subtotal</h2>
-            <h2>${total}</h2>
+            <h2>₹{total}</h2>
             <button onClick={pay}>Pay Now</button>
         </div>
+        {auth && <div style={{color:'red'}}>Please Login First</div>}
         </div>
+        
     </div>
  )
 }

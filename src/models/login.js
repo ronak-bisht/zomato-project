@@ -1,7 +1,10 @@
 
 import React from "react"
+import { UserContext } from "../App.js";
+import { useContext } from "react";
 
 export default function Login(props){
+    const {state,dispatch} = useContext(UserContext);
 
     const [user,setUser]=React.useState({
         name:'',
@@ -70,7 +73,16 @@ export default function Login(props){
         setError(true)
     }
     else{
-        window.alert('login seccesfuly')
+        dispatch({type:'USER',payload:true})
+        props.extra()
+        setUser({
+            name:'',
+            email:'',
+            password:''
+        })
+        
+        
+        
     }
 
  }

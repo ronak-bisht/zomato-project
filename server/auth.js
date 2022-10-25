@@ -4,7 +4,8 @@ const Router=express.Router()
 const User=require('./userSchema.js')
 const jwt=require('jsonwebtoken')
 const authenticate=require('./middleware/authenticate.js')
-
+const Restaurant=require('./restaurantSchema.js')
+const { json } = require('express')
  Router.post('/register',(req,res)=>{
     const {name,email,password}=req.body
     if(!name || !email || !password){
@@ -61,13 +62,27 @@ Router.post('/signin',async (req,res)=>{
     }
 })
 
+Router.get('/restaurants',(req,res)=>{
+ const rest=Restaurant.find({},(err,data)=>{
+ if(err){
+    console.log(err)
+ }
+ else{
+    res.json(data)
+    console.log(data)
+ }
+ })
+ 
+})
+
 Router.get('/payment',authenticate,(req,res)=>{
- console.log('hello about')
+ 
  res.send(req.rootUser)
 })
 
 Router.get('/logout',(req,res)=>{
-    res.clearCookie('jwttoken',{path:'/'})
+ 
+    res.clearCookie('jwtoken')
     res.status(200).send('user lougout')
 })
 module.exports=Router

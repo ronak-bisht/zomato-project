@@ -1,9 +1,12 @@
 import Button from '../Button.js'
 import Model from '../../models/login.js'
-import React from 'react'
+import React,{useContext} from 'react'
 import {Link} from 'react-router-dom'
-export default function Nav(){
+import { UserContext } from '../../App.js'
 
+export default function Nav(){
+    
+    const {state,dispatch}=useContext(UserContext)
     const [open,setOpen]=React.useState(false)
     const [register,setRegister]=React.useState(false)
     function openRegister(){
@@ -35,30 +38,31 @@ export default function Nav(){
 
 
             <div className='buttons'>
-            <Button 
+
+             {state || <Button 
             isOutline="0"
             isBackground='0'
             size=''
             text='Login'
             openLogin={openLogin}
-              />
+              />}
 
-              <Button 
+              { state || <Button 
                isOutline='1'
                isBackground='0'
                size='lg'
                text='Create an account'
                openLogin={openRegister}
-              />
+              />}
 
-               <Link to='/logout'>
+              { state && <Link to='/logout'>
               <Button
               isOutline='1'
               isBackground='0'
               size=''
               text='Logout'
               />
-              </Link> 
+              </Link> }
 
          </div>
             </div>
@@ -67,12 +71,14 @@ export default function Nav(){
          {open && <Model closeLogin={closeLogin}
            register="Login"
            login="Sign UP"
+           extra={()=>setOpen(!open)}
         />}
 
         {register && <Model closeLogin={closeLogin}
             name='name'
            register="Sign UP"
            login="Login"
+           extra={()=>setRegister(!register)}
         />}
         </div>
     )
