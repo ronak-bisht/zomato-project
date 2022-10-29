@@ -69,7 +69,7 @@ Router.get('/restaurants',(req,res)=>{
  }
  else{
     res.json(data)
-    console.log(data)
+    
  }
  })
  

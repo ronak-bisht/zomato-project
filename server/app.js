@@ -1,4 +1,5 @@
 const express=require('express')
+const dotenv=require('dotenv')
 const app=express();
 const Router=require('./auth.js')
 const mongoose=require('mongoose')

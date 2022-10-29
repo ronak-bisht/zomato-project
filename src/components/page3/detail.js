@@ -14,9 +14,10 @@ export default function Detail(){
     const {state,dispatch}=useContext(UserContext)
     
     const {id}=useParams()
-    const obj=data.find((res)=>{
-        return res.id==id
-    })
+    // const obj=data.find((res)=>{
+    //     return res.id==id
+    // })
+
     
     const [overview,setOverview]=React.useState(true)
     const [contact,setContact]=React.useState(false)
@@ -24,6 +25,7 @@ export default function Detail(){
     const [showUser,setShowUser]=React.useState(false)
     const [showPayment,setshowPayment]=React.useState(false)
     const [auth,setAuth]=React.useState(false)
+    const [obj,setObj]=React.useState({})
    function handleChange(e){
     if(e.target.id==='overview'){
         setOverview(true)
@@ -36,7 +38,20 @@ export default function Detail(){
    }
    
 
-
+useEffect(()=>{
+    const getData=async ()=>{
+        // const data=await axios.get(`http://localhost:5000/restaurants`)
+        const data=await axios.get(`/restaurants`)
+       
+         const obj=data.data.find((res)=>{
+         return res.id==id
+          })
+       
+        setObj(obj)
+    }
+    getData()
+ },[])
+ console.log(obj)
    useEffect(()=>{
     const auth=async ()=>{
         try{

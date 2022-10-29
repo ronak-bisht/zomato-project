@@ -8,6 +8,7 @@ export default function Order({foods,name,close,pay,auth}){
       "Samosa":0
    })
    const [total,setTotal]=useState(0)
+
    
    function increament(name,price){
       setOrderNum((pre)=>{
@@ -20,25 +21,32 @@ export default function Order({foods,name,close,pay,auth}){
 
       
       setTotal((pre)=>{
-         console.log(pre)
+         
          return pre+price
       })
       
    }
    function decreament(name,price){
-      setOrderNum((pre)=>{
+
+      if(orderNum[name]>0){
+         setOrderNum((pre)=>{
          
-         return {
-            ...pre,
-            [name]:pre[name]-1
-         }
-      })
+            return {
+               ...pre,
+               [name]:pre[name]-1
+            }
+         })
+         
+        
+         setTotal((pre)=>{
+            
+            return pre-price
+         })
+      }
       
-     
-      setTotal((pre)=>{
-         
-         return pre-price
-      })
+        
+      
+      
    }
 
 
